@@ -53,6 +53,32 @@ public class ABB{   		//Java Beans
 			}
 	}
 
+	//Recorrer el arbol en InOrden
+	public void recorridoInOrden(Nodo nodoRef){
+		if (nodoRef != null) {
+			recorridoInOrden(nodoRef.izquierdo);
+			System.out.println(nodoRef.dato + "");
+			recorridoInOrden(nodoRef.derecho);
+		}
+	}
+
+	//Recorre el arbol en PostOrden
+	public void recorridoPostOrden(Nodo nodoRef){
+		if (nodoRef != null) {
+			recorridoPostOrden(nodoRef.izquierdo);
+			recorridoPostOrden(nodoRef.derecho);
+			System.out.println(nodoRef.dato + "");
+		}
+	}
+
+	//Recorre el arbol en PreOrden
+	public void recorridoPreOrden(Nodo nodoRef){
+		if (nodoRef != null) {
+			System.out.println(nodoRef.dato + "");
+			recorridoPreOrden(nodoRef.izquierdo);
+			recorridoPreOrden(nodoRef.derecho);
+		}
+	}
 
 	public void muestraAcostado(int nivel, Nodo nodoRef){
 		if (nodoRef == null){
