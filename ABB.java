@@ -80,21 +80,60 @@ public class ABB{   		//Java Beans
 		}
 	}
 
-	public void muestraAcostado(int nivel, Nodo nodoRef){
+	public void muestraHorizontal(int nivel, Nodo nodoRef){
 		if (nodoRef == null){
 			return;
 		}
 		else {
-			muestraAcostado(nivel + 1, nodoRef.derecho);
+			muestraHorizontal(nivel + 1, nodoRef.derecho);
 
 			for (int i=0; i < nivel; i++){
 				System.out.print("   ");
 			}
 
 			System.out.println(nodoRef.dato);
-			muestraAcostado(nivel + 1, nodoRef.izquierdo);
+			muestraHorizontal(nivel + 1, nodoRef.izquierdo);
 		}
 	}
+
+	private int minimoValor(Nodo nodoRef) {
+        int minValue = nodoRef.dato;
+        while (nodoRef.izquierdo != null) {
+            minValue = nodoRef.izquierdo.dato;
+            nodoRef = nodoRef.izquierdo;
+        }
+        return minValue;
+    }
+
+	//Metodo para eliminar un nodo
+	public Nodo eliminarNodo(int dato, Nodo nodoRef){
+		if (nodoRef == null) {
+			return nodoRef;
+		} 
+		else if (dato <  nodoRef.dato) {
+			nodoRef.izquierdo = eliminarNodo(dato, nodoRef.izquierdo);
+		} 
+		else if (dato > nodoRef.dato) {
+			nodoRef.derecho = eliminarNodo(dato, nodoRef.derecho);
+		} 
+		else {
+            // Nodo con un solo hijo o sin hijos
+            if (nodoRef.izquierdo == null) {
+                return nodoRef.derecho;
+            } else if (nodoRef.derecho == null) {
+                return nodoRef.izquierdo;
+            }
+
+            // Nodo con dos hijos, obtener sucesor inorden
+            nodoRef.dato = minimoValor(nodoRef.derecho);
+
+            // Eliminar el sucesor inorden
+            nodoRef.derecho = eliminarNodo(nodoRef.dato, nodoRef.derecho);
+        }
+		
+		return nodoRef;
+	}
+
 }
 
 

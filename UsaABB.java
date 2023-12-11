@@ -13,8 +13,9 @@ public class UsaABB{
 		arbol.insertarValor(27);
 
 		System.out.println("Nodo raiz: " + arbol.regresaRaiz().dato);
-		arbol.muestraAcostado(0, arbol.regresaRaiz());
+		arbol.muestraHorizontal(0, arbol.regresaRaiz());
 
+		//Recoridos del arbol
 		System.out.println("Recorrido del arbol en InOrden");
 		arbol.recorridoInOrden(arbol.regresaRaiz());
 
@@ -23,5 +24,14 @@ public class UsaABB{
 
 		System.out.println("Recorrido del arbol en PreOrden");
 		arbol.recorridoPreOrden(arbol.regresaRaiz());
+
+		//Eliminación y muestra del arbol nuevo
+		int dato = 8;
+		System.out.println("Eliminar el valor " + dato);
+		arbol.eliminarNodo(dato, arbol.regresaRaiz());
+
+		System.out.println("Nodo raiz: " + arbol.regresaRaiz().dato);
+		arbol.muestraHorizontal(0, arbol.regresaRaiz());
+
 	}
 }
